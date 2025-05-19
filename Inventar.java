@@ -59,7 +59,7 @@ public class Inventar {
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.err.println("Greška pri pisanju u datoteku: " + e.getMessage());
+            System.err.println("Greska pri pisanju u datoteku: " + e.getMessage());
         }
     }
 
@@ -77,7 +77,7 @@ public class Inventar {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Greška pri čitanju datoteke: " + e.getMessage());
+            System.err.println("Greska pri citanju datoteke: " + e.getMessage());
         }
     }
 
@@ -116,7 +116,7 @@ public class Inventar {
                 default -> null;
             };
         } catch (Exception e) {
-            System.err.println("Greška u parsiranju linije: " + linija);
+            System.err.println("Greska u parsiranju linije: " + linija);
             return null;
         }
     }

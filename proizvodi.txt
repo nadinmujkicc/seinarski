@@ -1,14 +1,14 @@
 RezaniCvijet;ime=Ruza, cijena=2.5, kolicina=10, datum=2025-05-01, boja=crvena, visina=30.0, vrsta=RUZA, duzina=40
-RezaniCvijet;ime=Tulipan, cijena=1.8, kolicina=15, datum=2025-05-01, boja=žuta, visina=25.0, vrsta=TULIPAN, duzina=35
+RezaniCvijet;ime=Tulipan, cijena=1.8, kolicina=15, datum=2025-05-01, boja=zuta, visina=25.0, vrsta=TULIPAN, duzina=35
 SaksijskiCvijet;ime=Orhideja, cijena=12.0, kolicina=5, datum=2025-05-01, boja=bijela, visina=20.0, vrsta=ORHIDEJA, precnik=15.0
 Zelenilo;ime=Paprati, cijena=5.0, kolicina=12, datum=2025-05-01, tipListova=dugi
 Zelenilo;ime=Monstera, cijena=8.0, kolicina=6, datum=2025-05-01, tipListova=srcoliki
 Gnojivo;ime=Univerzalno, cijena=4.5, kolicina=20, datum=2025-05-01, tezina=1.0, vrsta=univerzalno
-Gnojivo;ime=Za ruže, cijena=5.0, kolicina=10, datum=2025-05-01, tezina=0.5, vrsta=ruze
+Gnojivo;ime=Za ruze, cijena=5.0, kolicina=10, datum=2025-05-01, tezina=0.5, vrsta=ruze
 Svijeca;ime=Sveca velika, cijena=3.0, kolicina=8, datum=2025-05-01, trajanje=24
 Svijeca;ime=Sveca mala, cijena=1.5, kolicina=15, datum=2025-05-01, trajanje=8
-Cestitka;ime=Rodjendan, cijena=1.0, kolicina=30, datum=2025-05-01, poruka=Sretan rođendan!
+Cestitka;ime=Rodjendan, cijena=1.0, kolicina=30, datum=2025-05-01, poruka=Sretan rodendan!
 Cestitka;ime=Ljubav, cijena=1.2, kolicina=20, datum=2025-05-01, poruka=Volim te!
 Posuda;ime=Keramicka, cijena=6.0, kolicina=10, datum=2025-05-01, materijal=keramika, volumen=2.0
-Posuda;ime=Plastična, cijena=3.5, kolicina=25, datum=2025-05-01, materijal=plastika, volumen=1.5
-RezaniCvijet;ime=Gerber, cijena=2.0, kolicina=12, datum=2025-05-01, boja=narandžasta, visina=28.0, vrsta=GERBER, duzina=33
+Posuda;ime=Plasticna, cijena=3.5, kolicina=25, datum=2025-05-01, materijal=plastika, volumen=1.5
+RezaniCvijet;ime=Gerber, cijena=2.0, kolicina=12, datum=2025-05-01, boja=narandzasta, visina=28.0, vrsta=GERBER, duzina=33

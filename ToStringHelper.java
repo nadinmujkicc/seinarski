@@ -19,7 +19,7 @@ public class ToStringHelper {
                 ", boja=" + c.getBoja() +
                 ", visina=" + c.getVisina() +
                 ", vrsta=" + c.getVrstaCveca() +
-                ", precnik=" + c.getPrečnikSaksije();
+                ", precnik=" + c.getPrecnikSaksije();
     }
 
     public static String zaZelenilo(Zelenilo z) {

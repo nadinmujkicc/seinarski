@@ -1,12 +1,12 @@
 import java.time.LocalDate;
 
 public class SaksijskiCvet extends Cvet {
-    private double prečnikSaksije;
+    private double precnikSaksije;
 
     public SaksijskiCvet(String ime, double cijena, int kolicina, LocalDate datum, String boja, double visina,
-            VrstaCveca vrsta, double prečnik) {
+            VrstaCveca vrsta, double precnik) {
         super(ime, cijena, kolicina, datum, boja, visina, vrsta);
-        this.prečnikSaksije = prečnik;
+        this.precnikSaksije = precnik;
     }
 
     @Override
@@ -14,8 +14,8 @@ public class SaksijskiCvet extends Cvet {
         return ToStringHelper.zaSaksijskiCvet(this);
     }
 
-    public double getPrečnikSaksije() {
-        return prečnikSaksije;
+    public double getPrecnikSaksije() {
+        return precnikSaksije;
     }
 
 }

@@ -12,11 +12,11 @@ public class Main {
             System.out.println("\n--- MENI ---");
             System.out.println("1. Dodaj proizvod");
             System.out.println("2. Prodaj proizvod");
-            System.out.println("3. Prikaži sve proizvode");
+            System.out.println("3. Prikazi sve proizvode");
             System.out.println("4. Pretraga po imenu");
             System.out.println("5. Filtriranje po cijeni");
-            System.out.println("6. Sačuvaj u datoteku");
-            System.out.println("7. Učitaj iz datoteke");
+            System.out.println("6. Sacuvaj u datoteku");
+            System.out.println("7. Ucitaj iz datoteke");
             System.out.println("0. Izlaz");
             System.out.print("Izbor: ");
 
@@ -46,13 +46,13 @@ public class Main {
         String ime = scanner.nextLine();
         System.out.print("Unesi cijenu: ");
         double cijena = Double.parseDouble(scanner.nextLine());
-        System.out.print("Unesi količinu: ");
+        System.out.print("Unesi kolicinu: ");
         int kolicina = Integer.parseInt(scanner.nextLine());
         LocalDate datum = LocalDate.now();
 
         System.out.println("Odaberi tip proizvoda:");
         System.out.println(
-                "1. Rezani cvijet\n2. Saksijski cvijet\n3. Zelenilo\n4. Gnojivo\n5. Svijeća\n6. Čestitka\n7. Posuda");
+                "1. Rezani cvijet\n2. Saksijski cvijet\n3. Zelenilo\n4. Gnojivo\n5. Svijeca\n6. cestitka\n7. Posuda");
         int tip = Integer.parseInt(scanner.nextLine());
 
         switch (tip) {
@@ -61,7 +61,7 @@ public class Main {
                 String boja = scanner.nextLine();
                 System.out.print("Visina u cm: ");
                 double visina = Double.parseDouble(scanner.nextLine());
-                System.out.print("Dužina stabla: ");
+                System.out.print("Duzina stabla: ");
                 int duzina = Integer.parseInt(scanner.nextLine());
                 System.out.print("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ");
                 VrstaCveca vrsta = VrstaCveca.valueOf(scanner.nextLine().toUpperCase());
@@ -72,7 +72,7 @@ public class Main {
                 String boja = scanner.nextLine();
                 System.out.print("Visina u cm: ");
                 double visina = Double.parseDouble(scanner.nextLine());
-                System.out.print("Prečnik saksije: ");
+                System.out.print("Precnik saksije: ");
                 double precnik = Double.parseDouble(scanner.nextLine());
                 System.out.print("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ");
                 VrstaCveca vrsta = VrstaCveca.valueOf(scanner.nextLine().toUpperCase());
@@ -84,7 +84,7 @@ public class Main {
                 inventar.dodajProizvod(new Zelenilo(ime, cijena, kolicina, datum, tipListova));
             }
             case 4 -> {
-                System.out.print("Težina u kg: ");
+                System.out.print("Tezina u kg: ");
                 double tezina = Double.parseDouble(scanner.nextLine());
                 System.out.print("Vrsta gnojiva: ");
                 String vrsta = scanner.nextLine();
@@ -114,11 +114,11 @@ public class Main {
     private static void prodajProizvod() {
         System.out.print("Unesi ime proizvoda: ");
         String ime = scanner.nextLine();
-        System.out.print("Količina za prodaju: ");
+        System.out.print("Kolicina za prodaju: ");
         int kolicina = Integer.parseInt(scanner.nextLine());
         boolean uspjeh = inventar.prodajProizvod(ime, kolicina);
         if (uspjeh)
-            System.out.println("Prodaja uspješna.");
+            System.out.println("Prodaja uspjesna.");
         else
             System.out.println("Nema dovoljno zaliha ili proizvod ne postoji.");
     }
