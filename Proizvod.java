@@ -4,20 +4,28 @@ public abstract class Proizvod {
     protected String ime;
     protected double cijena;
     protected int kolicina;
-    protected static LocalTime datum;
+    protected LocalDate datum;
 
-    public Proizvod(String ime, double cijena, int kolicina, LocalTime datum) {
+    public Proizvod(String ime, double cijena, int kolicina, LocalDate datum) {
         this.ime = ime;
         this.cijena = cijena;
         this.kolicina = kolicina;
         this.datum = datum;
     }
 
-    public String getime() {
+    public String getIme() {
         return ime;
     }
 
-    public double getcijena() {
+    public void prodaj(int kolicina) {
+        if (this.kolicina >= kolicina) {
+            this.kolicina -= kolicina;
+        } else {
+            System.out.println("Nema dovoljno proizvoda na stanju.");
+        }
+    }
+
+    public double getCijena() {
         return cijena;
     }
 
@@ -37,12 +45,11 @@ public abstract class Proizvod {
         return String.format("%d", kolicina);
     }
 
-    public LocalTime getdatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public String datumToString() {
-        return String.format("%02d:%02d", datum.getHour(), datum.getMinute());
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
     }
-
 }

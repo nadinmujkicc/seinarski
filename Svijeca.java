@@ -4,7 +4,7 @@ public class Svijeca extends Proizvod {
     private int trajanjeUSatima;
 
     public Svijeca(String ime, double cijena, int kolicina, LocalDate dan, int trajanje) {
-        super(ime, cijena, kolicina, datum);
+        super(ime, cijena, kolicina, dan);
         this.trajanjeUSatima = trajanje;
     }
 

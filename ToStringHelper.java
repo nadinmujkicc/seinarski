@@ -1,9 +1,9 @@
 public class ToStringHelper {
     public static String zaProizvod(Proizvod p) {
-        return "ime=" + p.getime() +
-                ", cijena=" + p.getcijena() +
+        return "ime=" + p.getIme() +
+                ", cijena=" + p.getCijena() +
                 ", kolicina=" + p.getKolicina() +
-                ", datum=" + p.getdatum();
+                ", datum=" + p.getDatum();
     }
 
     public static String zaRezaniCvet(RezaniCvet c) {

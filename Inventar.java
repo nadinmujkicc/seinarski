@@ -14,15 +14,23 @@ public class Inventar {
     }
 
     public boolean prodajProizvod(String ime, int kolicina) {
-        for (Proizvod p : proizvodi) {
-            if (p.getime().equalsIgnoreCase(ime) && p.getKolicina() >= kolicina) {
-
-                if (p.getKolicina() == 0) {
-                    proizvodi.remove(p);
+        Iterator<Proizvod> it = proizvodi.iterator();
+        while (it.hasNext()) {
+            Proizvod p = it.next();
+            if (p.getIme().equalsIgnoreCase(ime)) {
+                if (p.getKolicina() >= kolicina) {
+                    p.prodaj(kolicina);
+                    if (p.getKolicina() == 0) {
+                        it.remove(); // ukloni iz liste
+                    }
+                    return true;
+                } else {
+                    System.out.println("Nedovoljno na zalihi!");
+                    return false;
                 }
-                return true;
             }
         }
+        System.out.println("Proizvod nije pronadjen.");
         return false;
     }
 
@@ -35,7 +43,7 @@ public class Inventar {
     public List<Proizvod> pretraziPoImenu(String kljuc) {
         List<Proizvod> rezultat = new ArrayList<>();
         for (Proizvod p : proizvodi) {
-            if (p.getime().toLowerCase().contains(kljuc.toLowerCase())) {
+            if (p.getIme().toLowerCase().contains(kljuc.toLowerCase())) {
                 rezultat.add(p);
             }
         }
@@ -45,7 +53,7 @@ public class Inventar {
     public List<Proizvod> filtrirajPoCijeni(double min, double max) {
         List<Proizvod> rezultat = new ArrayList<>();
         for (Proizvod p : proizvodi) {
-            if (p.getcijena() >= min && p.getcijena() <= max) {
+            if (p.getCijena() >= min && p.getCijena() <= max) {
                 rezultat.add(p);
             }
         }
@@ -97,7 +105,10 @@ public class Inventar {
             String ime = map.get("ime");
             double cijena = Double.parseDouble(map.get("cijena"));
             int kolicina = Integer.parseInt(map.get("kolicina"));
-            LocalDate datum = LocalDate.parse(map.get("datum"));
+            String datumStr = map.get("datum");
+            LocalDate datum = (datumStr == null || datumStr.equalsIgnoreCase("null"))
+                    ? LocalDate.now()
+                    : LocalDate.parse(datumStr);
 
             return switch (tip) {
                 case "RezaniCvijet" -> new RezaniCvet(ime, cijena, kolicina, datum, map.get("boja"),

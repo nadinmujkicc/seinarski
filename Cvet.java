@@ -7,7 +7,7 @@ public abstract class Cvet extends Proizvod {
 
     public Cvet(String ime, double cijena, int kolicina, LocalDate dan, String boja, double visina,
             VrstaCveca vrsta) {
-        super(ime, cijena, kolicina, datum);
+        super(ime, cijena, kolicina, dan);
 
         this.boja = boja;
         this.visina = visina;

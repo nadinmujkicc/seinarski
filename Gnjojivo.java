@@ -5,7 +5,7 @@ public class Gnjojivo extends Proizvod {
     private String tipGnojiva;
 
     public Gnjojivo(String ime, double cijena, int kolicina, LocalDate dan, double tezina, String vrsta) {
-        super(ime, cijena, kolicina, datum);
+        super(ime, cijena, kolicina, dan);
         this.tezina = tezina;
         this.tipGnojiva = vrsta;
     }

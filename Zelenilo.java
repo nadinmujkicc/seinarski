@@ -4,7 +4,7 @@ public class Zelenilo extends Proizvod {
     private String tipListova;
 
     public Zelenilo(String ime, double cijena, int kolicina, LocalDate dan, String tipListova) {
-        super(ime, cijena, kolicina, datum);
+        super(ime, cijena, kolicina, dan);
         this.tipListova = tipListova;
     }
 

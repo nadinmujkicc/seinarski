@@ -1,10 +1,9 @@
 import java.time.LocalDate;
-import java.util.Scanner;
+
 import java.util.List;
 
 public class Main {
     private static Inventar inventar = new Inventar();
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         boolean radi = true;
@@ -18,23 +17,16 @@ public class Main {
             System.out.println("6. Sacuvaj u datoteku");
             System.out.println("7. Ucitaj iz datoteke");
             System.out.println("0. Izlaz");
-            System.out.print("Izbor: ");
+            int izbor = UnosHelper.unesiInt("Izbor: ");
 
-            int izbor = Integer.parseInt(scanner.nextLine());
             switch (izbor) {
                 case 1 -> dodajProizvod();
                 case 2 -> prodajProizvod();
                 case 3 -> inventar.ispisiSve();
                 case 4 -> pretrazi();
                 case 5 -> filtriraj();
-                case 6 -> {
-                    System.out.print("ime datoteke: ");
-                    inventar.sacuvajUDatoteku(scanner.nextLine());
-                }
-                case 7 -> {
-                    System.out.print("ime datoteke: ");
-                    inventar.ucitajIzDatoteke(scanner.nextLine());
-                }
+                case 6 -> inventar.sacuvajUDatoteku(UnosHelper.unesiTekst("Ime datoteke: "));
+                case 7 -> inventar.ucitajIzDatoteke(UnosHelper.unesiTekst("Ime datoteke: "));
                 case 0 -> radi = false;
                 default -> System.out.println("Nepoznata opcija.");
             }
@@ -42,69 +34,53 @@ public class Main {
     }
 
     private static void dodajProizvod() {
-        System.out.print("Unesi ime: ");
-        String ime = scanner.nextLine();
-        System.out.print("Unesi cijenu: ");
-        double cijena = Double.parseDouble(scanner.nextLine());
-        System.out.print("Unesi kolicinu: ");
-        int kolicina = Integer.parseInt(scanner.nextLine());
+        String ime = UnosHelper.unesiTekst("Unesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Unesi kolicinu: ");
         LocalDate datum = LocalDate.now();
 
         System.out.println("Odaberi tip proizvoda:");
         System.out.println(
                 "1. Rezani cvijet\n2. Saksijski cvijet\n3. Zelenilo\n4. Gnojivo\n5. Svijeca\n6. cestitka\n7. Posuda");
-        int tip = Integer.parseInt(scanner.nextLine());
+        int tip = UnosHelper.unesiInt("Izbor: ");
 
         switch (tip) {
             case 1 -> {
-                System.out.print("Boja: ");
-                String boja = scanner.nextLine();
-                System.out.print("Visina u cm: ");
-                double visina = Double.parseDouble(scanner.nextLine());
-                System.out.print("Duzina stabla: ");
-                int duzina = Integer.parseInt(scanner.nextLine());
-                System.out.print("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ");
-                VrstaCveca vrsta = VrstaCveca.valueOf(scanner.nextLine().toUpperCase());
+                String boja = UnosHelper.unesiTekst("Boja: ");
+                double visina = UnosHelper.unesiDouble("Visina u cm: ");
+                int duzina = UnosHelper.unesiInt("Duzina stabla: ");
+                VrstaCveca vrsta = VrstaCveca
+                        .valueOf(UnosHelper.unesiTekst("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ").toUpperCase());
                 inventar.dodajProizvod(new RezaniCvet(ime, cijena, kolicina, datum, boja, visina, vrsta, duzina));
             }
             case 2 -> {
-                System.out.print("Boja: ");
-                String boja = scanner.nextLine();
-                System.out.print("Visina u cm: ");
-                double visina = Double.parseDouble(scanner.nextLine());
-                System.out.print("Precnik saksije: ");
-                double precnik = Double.parseDouble(scanner.nextLine());
-                System.out.print("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ");
-                VrstaCveca vrsta = VrstaCveca.valueOf(scanner.nextLine().toUpperCase());
+                String boja = UnosHelper.unesiTekst("Boja: ");
+                double visina = UnosHelper.unesiDouble("Visina u cm: ");
+                double precnik = UnosHelper.unesiDouble("Precnik saksije: ");
+                VrstaCveca vrsta = VrstaCveca
+                        .valueOf(UnosHelper.unesiTekst("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ").toUpperCase());
                 inventar.dodajProizvod(new SaksijskiCvet(ime, cijena, kolicina, datum, boja, visina, vrsta, precnik));
             }
             case 3 -> {
-                System.out.print("Tip listova: ");
-                String tipListova = scanner.nextLine();
+                String tipListova = UnosHelper.unesiTekst("Tip listova: ");
                 inventar.dodajProizvod(new Zelenilo(ime, cijena, kolicina, datum, tipListova));
             }
             case 4 -> {
-                System.out.print("Tezina u kg: ");
-                double tezina = Double.parseDouble(scanner.nextLine());
-                System.out.print("Vrsta gnojiva: ");
-                String vrsta = scanner.nextLine();
+                double tezina = UnosHelper.unesiDouble("Tezina u kg: ");
+                String vrsta = UnosHelper.unesiTekst("Vrsta gnojiva: ");
                 inventar.dodajProizvod(new Gnjojivo(ime, cijena, kolicina, datum, tezina, vrsta));
             }
             case 5 -> {
-                System.out.print("Trajanje u satima: ");
-                int trajanje = Integer.parseInt(scanner.nextLine());
+                int trajanje = UnosHelper.unesiInt("Trajanje u satima: ");
                 inventar.dodajProizvod(new Svijeca(ime, cijena, kolicina, datum, trajanje));
             }
             case 6 -> {
-                System.out.print("Poruka: ");
-                String poruka = scanner.nextLine();
+                String poruka = UnosHelper.unesiTekst("Poruka: ");
                 inventar.dodajProizvod(new Cestitka(ime, cijena, kolicina, datum, poruka));
             }
             case 7 -> {
-                System.out.print("Materijal: ");
-                String materijal = scanner.nextLine();
-                System.out.print("Volumen u litrima: ");
-                double volumen = Double.parseDouble(scanner.nextLine());
+                String materijal = UnosHelper.unesiTekst("Materijal: ");
+                double volumen = UnosHelper.unesiDouble("Volumen u litrima: ");
                 inventar.dodajProizvod(new Saksija(ime, cijena, kolicina, datum, materijal, volumen));
             }
             default -> System.out.println("Nepoznat tip.");
@@ -112,10 +88,8 @@ public class Main {
     }
 
     private static void prodajProizvod() {
-        System.out.print("Unesi ime proizvoda: ");
-        String ime = scanner.nextLine();
-        System.out.print("Kolicina za prodaju: ");
-        int kolicina = Integer.parseInt(scanner.nextLine());
+        String ime = UnosHelper.unesiTekst("Unesi ime proizvoda: ");
+        int kolicina = UnosHelper.unesiInt("Kolicina za prodaju: ");
         boolean uspjeh = inventar.prodajProizvod(ime, kolicina);
         if (uspjeh)
             System.out.println("Prodaja uspjesna.");
@@ -124,17 +98,14 @@ public class Main {
     }
 
     private static void pretrazi() {
-        System.out.print("Unesi ime za pretragu: ");
-        List<Proizvod> rezultat = inventar.pretraziPoImenu(scanner.nextLine());
+        List<Proizvod> rezultat = inventar.pretraziPoImenu(UnosHelper.unesiTekst("Unesi ime za pretragu: "));
         for (Proizvod p : rezultat)
             System.out.println(p);
     }
 
     private static void filtriraj() {
-        System.out.print("Unesi minimalnu cijenu: ");
-        double min = Double.parseDouble(scanner.nextLine());
-        System.out.print("Unesi maksimalnu cijenu: ");
-        double max = Double.parseDouble(scanner.nextLine());
+        double min = UnosHelper.unesiDouble("Unesi minimalnu cijenu: ");
+        double max = UnosHelper.unesiDouble("Unesi maksimalnu cijenu: ");
         List<Proizvod> rezultat = inventar.filtrirajPoCijeni(min, max);
         for (Proizvod p : rezultat)
             System.out.println(p);

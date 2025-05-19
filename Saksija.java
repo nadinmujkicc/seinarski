@@ -5,7 +5,7 @@ public class Saksija extends Proizvod {
     private double volumenLitara;
 
     public Saksija(String ime, double cijena, int kolicina, LocalDate dan, String materijal, double volumen) {
-        super(ime, cijena, kolicina, datum);
+        super(ime, cijena, kolicina, dan);
         this.materijal = materijal;
         this.volumenLitara = volumen;
     }
