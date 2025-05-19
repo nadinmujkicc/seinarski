@@ -1,78 +1,126 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
+import java.time.LocalDate;
 
 public class Inventar {
     private List<Proizvod> proizvodi;
 
     public Inventar() {
-        proizvodi = new ArrayList<>();
+        this.proizvodi = new ArrayList<>();
     }
 
-    public void dodajProizvod(Proizvod proizvod) {
-        proizvodi.add(proizvod);
+    public void dodajProizvod(Proizvod p) {
+        proizvodi.add(p);
     }
 
-    public void ukloniProizvod(Proizvod proizvod) {
-        proizvodi.remove(proizvod);
-    }
-
-    public boolean prodajProizvod(String naziv, int kolicina) {
+    public boolean prodajProizvod(String ime, int kolicina) {
         for (Proizvod p : proizvodi) {
-            if (p.getNaziv().equalsIgnoreCase(naziv) && p.getKolicina() >= kolicina) {
-                p.setKolicina(p.getKolicina() - kolicina);
+            if (p.getime().equalsIgnoreCase(ime) && p.getKolicina() >= kolicina) {
+
+                if (p.getKolicina() == 0) {
+                    proizvodi.remove(p);
+                }
                 return true;
             }
         }
         return false;
     }
 
-    public void ispisiVse() {
+    public void ispisiSve() {
         for (Proizvod p : proizvodi) {
             System.out.println(p);
         }
     }
 
-    public List<Proizvod> pretraziPoImenu(String key) {
-        List<Proizvod> pronadjeni = new ArrayList<>();
+    public List<Proizvod> pretraziPoImenu(String kljuc) {
+        List<Proizvod> rezultat = new ArrayList<>();
         for (Proizvod p : proizvodi) {
-            if (p.getNaziv().toLowerCase().contains(key.toLowerCase())) {
-                pronadjeni.add(p);
+            if (p.getime().toLowerCase().contains(kljuc.toLowerCase())) {
+                rezultat.add(p);
             }
         }
-        return pronadjeni;
+        return rezultat;
     }
 
-    public List<Proizvod> pretraziPoCeni(double min, double max) {
-        List<Proizvod> pronadjeni = new ArrayList<>();
+    public List<Proizvod> filtrirajPoCijeni(double min, double max) {
+        List<Proizvod> rezultat = new ArrayList<>();
         for (Proizvod p : proizvodi) {
-            if (p.getCena() >= min && p.getCena() <= max) {
-                pronadjeni.add(p);
+            if (p.getcijena() >= min && p.getcijena() <= max) {
+                rezultat.add(p);
             }
         }
-        return pronadjeni;
+        return rezultat;
     }
 
-    public List<Proizvod> pretraziPoKolicini(int min, int max) {
-        List<Proizvod> pronadjeni = new ArrayList<>();
-        for (Proizvod p : proizvodi) {
-            if (p.getKolicina() >= min && p.getKolicina() <= max) {
-                pronadjeni.add(p);
-            }
-        }
-        return pronadjeni;
-    }
-
-    public void shraniVDatoteku(String imeDatoteke) {
-        try (BufferedWriter oos = new BufferedWriter(new FileWriter(imeDatoteke))) {
+    public void sacuvajUDatoteku(String imeDatoteke) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(imeDatoteke))) {
             for (Proizvod p : proizvodi) {
-                oos.write(p.toString());
-                oos.newLine();
+                bw.write(serialize(p));
+                bw.newLine();
             }
         } catch (IOException e) {
-            System.out.println("Greska prilikom pisanja v datoteku: " + e.getMessage());
+            System.err.println("Greška pri pisanju u datoteku: " + e.getMessage());
         }
     }
-    //TODO UCitaj iz datoteke
+
+    private String serialize(Proizvod p) {
+        return p.getClass().getSimpleName() + ";" + p.toString(); // prilagodi po potrebi
+    }
+
+    public void ucitajIzDatoteke(String imeDatoteke) {
+        try (BufferedReader br = new BufferedReader(new FileReader(imeDatoteke))) {
+            String linija;
+            while ((linija = br.readLine()) != null) {
+                Proizvod p = parseProizvod(linija);
+                if (p != null) {
+                    proizvodi.add(p);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Greška pri čitanju datoteke: " + e.getMessage());
+        }
+    }
+
+    private Proizvod parseProizvod(String linija) {
+        try {
+            String[] dijelovi = linija.split(";");
+            String tip = dijelovi[0];
+            String[] podaci = dijelovi[1].replace("{", "").replace("}", "").split(", ");
+
+            Map<String, String> map = new HashMap<>();
+            for (String p : podaci) {
+                String[] par = p.split("=");
+                if (par.length == 2)
+                    map.put(par[0].trim(), par[1].trim());
+            }
+
+            String ime = map.get("ime");
+            double cijena = Double.parseDouble(map.get("cijena"));
+            int kolicina = Integer.parseInt(map.get("kolicina"));
+            LocalDate datum = LocalDate.parse(map.get("datum"));
+
+            return switch (tip) {
+                case "RezaniCvijet" -> new RezaniCvet(ime, cijena, kolicina, datum, map.get("boja"),
+                        Double.parseDouble(map.get("visina")), VrstaCveca.valueOf(map.get("vrsta")),
+                        Integer.parseInt(map.get("duzina")));
+                case "SaksijskiCvijet" -> new SaksijskiCvet(ime, cijena, kolicina, datum, map.get("boja"),
+                        Double.parseDouble(map.get("visina")), VrstaCveca.valueOf(map.get("vrsta")),
+                        Double.parseDouble(map.get("precnik")));
+                case "Zelenilo" -> new Zelenilo(ime, cijena, kolicina, datum, map.get("tipListova"));
+                case "Gnojivo" ->
+                    new Gnjojivo(ime, cijena, kolicina, datum, Double.parseDouble(map.get("tezina")), map.get("vrsta"));
+                case "Svijeca" -> new Svijeca(ime, cijena, kolicina, datum, Integer.parseInt(map.get("trajanje")));
+                case "Cestitka" -> new Cestitka(ime, cijena, kolicina, datum, map.get("poruka"));
+                case "Posuda" -> new Saksija(ime, cijena, kolicina, datum, map.get("materijal"),
+                        Double.parseDouble(map.get("volumen")));
+                default -> null;
+            };
+        } catch (Exception e) {
+            System.err.println("Greška u parsiranju linije: " + linija);
+            return null;
+        }
+    }
+
     public List<Proizvod> getProizvodi() {
         return proizvodi;
     }

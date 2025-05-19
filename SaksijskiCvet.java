@@ -11,8 +11,11 @@ public class SaksijskiCvet extends Cvet {
 
     @Override
     public String toString() {
-        return "SaksijskiCvet{" + naziv + ", boja=" + boja + ", prečnik=" + prečnikSaksije + ", visina=" + visina
-                + "cm}";
+        return ToStringHelper.zaSaksijskiCvet(this);
+    }
+
+    public double getPrečnikSaksije() {
+        return prečnikSaksije;
     }
 
 }

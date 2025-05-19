@@ -1,15 +1,19 @@
-import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class Zelenilo extends Proizvod {
     private String tipListova;
 
-    public Zelenilo(String naziv, double cijena, int kolicina, LocalTime datumPrijema, String tipListova) {
-        super(naziv, cijena, kolicina, datumPrijema);
+    public Zelenilo(String ime, double cijena, int kolicina, LocalDate dan, String tipListova) {
+        super(ime, cijena, kolicina, datum);
         this.tipListova = tipListova;
     }
 
+    @Override
     public String toString() {
-        return "Zelenilo{" + naziv + ", tipListova=" + tipListova + "}";
+        return ToStringHelper.zaZelenilo(this);
     }
 
+    public String getTipListova() {
+        return tipListova;
+    }
 }

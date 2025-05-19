@@ -8,8 +8,13 @@ public class RezaniCvet extends Cvet {
         super(ime, cijena, kolicina, datum, boja, visina, vrsta);
         this.duzinaStabljike = duzina;
     }
+
     @Override
     public String toString() {
-        return "RezaniCvijet{" + naziv + ", boja=" + boja + ", duzinaStabla=" + duzinaStabljike + ", visina=" + visina + "cm}";
+        return ToStringHelper.zaRezaniCvet(this);
+    }
+
+    public int getDuzinaStabla() {
+        return duzinaStabljike;
     }
 }

@@ -3,11 +3,11 @@ import java.time.LocalDate;
 public abstract class Cvet extends Proizvod {
     protected String boja;
     protected double visina;
-    protected  VrstaCveca vrstaCveca;
+    protected VrstaCveca vrstaCveca;
 
-    public Cvet(String ime, double cijena, int kolicina, LocalDate datum, String boja, double visina,
+    public Cvet(String ime, double cijena, int kolicina, LocalDate dan, String boja, double visina,
             VrstaCveca vrsta) {
-        super(naziv, cena, kolicina, datumPrijema);
+        super(ime, cijena, kolicina, datum);
 
         this.boja = boja;
         this.visina = visina;

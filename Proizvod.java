@@ -1,28 +1,28 @@
 import java.time.*;
 
 public abstract class Proizvod {
-    protected static String naziv;
-    protected static double cena;
+    protected String ime;
+    protected double cijena;
     protected int kolicina;
-    protected static LocalTime datumPrijema;
+    protected static LocalTime datum;
 
-    public Proizvod(String naziv, double cena, int kolicina, LocalTime datumPrijema) {
-        Proizvod.naziv = naziv;
-        Proizvod.cena = cena;
+    public Proizvod(String ime, double cijena, int kolicina, LocalTime datum) {
+        this.ime = ime;
+        this.cijena = cijena;
         this.kolicina = kolicina;
-        Proizvod.datumPrijema = datumPrijema;
+        this.datum = datum;
     }
 
-    public String getNaziv() {
-        return naziv;
+    public String getime() {
+        return ime;
     }
 
-    public double getCena() {
-        return cena;
+    public double getcijena() {
+        return cijena;
     }
 
-    public String cenaToString() {
-        return String.format("%.2f", cena);
+    public String cijenaToString() {
+        return String.format("%.2f", cijena);
     }
 
     public int getKolicina() {
@@ -37,12 +37,12 @@ public abstract class Proizvod {
         return String.format("%d", kolicina);
     }
 
-    public LocalTime getDatumPrijema() {
-        return datumPrijema;
+    public LocalTime getdatum() {
+        return datum;
     }
 
-    public String datumPrijemaToString() {
-        return String.format("%02d:%02d", datumPrijema.getHour(), datumPrijema.getMinute());
+    public String datumToString() {
+        return String.format("%02d:%02d", datum.getHour(), datum.getMinute());
     }
 
 }

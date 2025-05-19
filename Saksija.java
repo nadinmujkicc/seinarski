@@ -4,15 +4,23 @@ public class Saksija extends Proizvod {
     private String materijal;
     private double volumenLitara;
 
-    public Saksija(String ime, double cijena, int kolicina, LocalDate datum, String materijal, double volumen) {
-        super(naziv, cena, kolicina, datumPrijema);
+    public Saksija(String ime, double cijena, int kolicina, LocalDate dan, String materijal, double volumen) {
+        super(ime, cijena, kolicina, datum);
         this.materijal = materijal;
         this.volumenLitara = volumen;
     }
 
     @Override
     public String toString() {
-        return "Saksija{" + naziv + ", materijal=" + materijal + ", volumen=" + volumenLitara + "L}";
- 
-   }
+        return ToStringHelper.zaSaksiju(this);
+
+    }
+
+    public String getMaterijal() {
+        return materijal;
+    }
+
+    public double getVolumenLitara() {
+        return volumenLitara;
+    }
 }
