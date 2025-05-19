@@ -21,7 +21,7 @@ public class Inventar {
                 if (p.getKolicina() >= kolicina) {
                     p.prodaj(kolicina);
                     if (p.getKolicina() == 0) {
-                        it.remove(); // ukloni iz liste
+                        it.remove();
                     }
                     return true;
                 } else {
@@ -72,7 +72,7 @@ public class Inventar {
     }
 
     private String serialize(Proizvod p) {
-        return p.getClass().getSimpleName() + ";" + p.toString(); // prilagodi po potrebi
+        return p.getClass().getSimpleName() + ";" + p.toString();
     }
 
     public void ucitajIzDatoteke(String imeDatoteke) {
