@@ -2,13 +2,13 @@ import java.time.LocalDate;
 
 import java.util.List;
 
-public class Main {
+public class Cvjecara {
     private static Inventar inventar = new Inventar();
 
     public static void main(String[] args) {
         boolean radi = true;
         while (radi) {
-            System.out.println("\n--- MENI ---");
+
             System.out.println("1. Dodaj proizvod");
             System.out.println("2. Prodaj proizvod");
             System.out.println("3. Prikazi sve proizvode");
