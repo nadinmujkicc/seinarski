@@ -11,6 +11,8 @@ public class Inventar {
 
     public void dodajProizvod(Proizvod p) {
         proizvodi.add(p);
+        System.out.println("Proizvod " + p.getIme() + " je dodat u inventar.");
+
     }
 
     public boolean prodajProizvod(String ime, int kolicina) {
@@ -26,18 +28,26 @@ public class Inventar {
                     return true;
                 } else {
                     System.out.println("Nedovoljno na zalihi!");
+
                     return false;
                 }
             }
         }
         System.out.println("Proizvod nije pronadjen.");
+
         return false;
     }
 
     public void ispisiSve() {
         for (Proizvod p : proizvodi) {
             System.out.println(p);
+
         }
+    }
+
+    public void sortiraj(Comparator<Proizvod> comparator) {
+        proizvodi.sort(comparator);
+
     }
 
     public List<Proizvod> pretraziPoImenu(String kljuc) {
@@ -48,12 +58,23 @@ public class Inventar {
             }
         }
         return rezultat;
+
     }
 
     public List<Proizvod> filtrirajPoCijeni(double min, double max) {
         List<Proizvod> rezultat = new ArrayList<>();
         for (Proizvod p : proizvodi) {
             if (p.getCijena() >= min && p.getCijena() <= max) {
+                rezultat.add(p);
+            }
+        }
+        return rezultat;
+    }
+
+    public List<Proizvod> filtrirajPoKolicini(double min, double max) {
+        List<Proizvod> rezultat = new ArrayList<>();
+        for (Proizvod p : proizvodi) {
+            if (p.getKolicina() >= min && p.getKolicina() <= max) {
                 rezultat.add(p);
             }
         }

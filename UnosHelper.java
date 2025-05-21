@@ -9,7 +9,7 @@ public class UnosHelper {
                 System.out.print(poruka);
                 return Integer.parseInt(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Neispravan unos. Pokusaj ponovo (mora biti cijeli broj).");
+                System.out.println("Neispravan unos. Pokusaj ponovo (mora biti celo stevilo).");
             }
         }
     }
@@ -20,7 +20,7 @@ public class UnosHelper {
                 System.out.print(poruka);
                 return Double.parseDouble(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Neispravan unos. Pokusaj ponovo (mora biti decimalni broj).");
+                System.out.println("Neispravan unos. Pokusaj ponovo (mora biti decimalno stevilo).");
             }
         }
     }
