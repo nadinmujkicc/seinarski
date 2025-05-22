@@ -10,13 +10,13 @@ public class SaksijskiCvet extends Cvet {
     }
 
     public static SaksijskiCvet unesi() {
-        String ime = UnosHelper.unesiTekst("Unesi ime: ");
-        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
-        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        String ime = UnosHelper.unesiTekst("Vnesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Vnesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Vnesi kolicinu: ");
         LocalDate datum = LocalDate.now();
         String boja = UnosHelper.unesiTekst("Boja: ");
         double visina = UnosHelper.unesiDouble("Visina u cm: ");
-        double precnik = UnosHelper.unesiDouble("Prečnik saksije: ");
+        double precnik = UnosHelper.unesiDouble("Precnik saksije: ");
         VrstaCveca vrsta = VrstaCveca.valueOf(UnosHelper.unesiTekst("Vrsta (RUZA, TULIPAN...): ").toUpperCase());
         return new SaksijskiCvet(ime, cijena, kolicina, datum, boja, visina, vrsta, precnik);
     }

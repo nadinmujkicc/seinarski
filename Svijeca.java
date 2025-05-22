@@ -9,9 +9,9 @@ public class Svijeca extends Proizvod {
     }
 
     public static Svijeca unesi() {
-        String ime = UnosHelper.unesiTekst("Unesi ime: ");
-        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
-        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        String ime = UnosHelper.unesiTekst("Vnesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Vnesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Vnesi kolicinu: ");
         LocalDate datum = LocalDate.now();
         int trajanje = UnosHelper.unesiInt("Trajanje u satima: ");
         return new Svijeca(ime, cijena, kolicina, datum, trajanje);

@@ -11,9 +11,9 @@ public class Saksija extends Proizvod {
     }
 
     public static Saksija unesi() {
-        String ime = UnosHelper.unesiTekst("Unesi ime: ");
-        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
-        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        String ime = UnosHelper.unesiTekst("Vnesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Vnesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Vnesi kolicinu: ");
         LocalDate datum = LocalDate.now();
         String materijal = UnosHelper.unesiTekst("Materijal: ");
         double volumen = UnosHelper.unesiDouble("Volumen u litrima: ");

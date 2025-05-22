@@ -41,7 +41,7 @@ public class Cvjecara {
     private static void dodajProizvod() {
         System.out.println("Odaberi tip proizvoda:");
         System.out.println(
-                "1. Rezani cvijet\n2. Saksijski cvijet\n3. Zelenilo\n4. Gnojivo\n5. Svijeca\n6. Čestitka\n7. Posuda");
+                "1. Rezani cvijet\n2. Saksijski cvijet\n3. Zelenilo\n4. Gnojivo\n5. Svijeca\n6. cestitka\n7. Posuda");
 
         int tip = UnosHelper.unesiInt("Izbor: ");
 

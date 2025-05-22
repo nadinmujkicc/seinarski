@@ -11,11 +11,11 @@ public class Gnjojivo extends Proizvod {
     }
 
     public static Gnjojivo unesi() {
-        String ime = UnosHelper.unesiTekst("Unesi ime: ");
-        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
-        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        String ime = UnosHelper.unesiTekst("Vnesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Vnesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Vnesi kolicinu: ");
         LocalDate datum = LocalDate.now();
-        double tezina = UnosHelper.unesiDouble("Težina u kg: ");
+        double tezina = UnosHelper.unesiDouble("Tezina u kg: ");
         String vrsta = UnosHelper.unesiTekst("Vrsta gnojiva: ");
         return new Gnjojivo(ime, cijena, kolicina, datum, tezina, vrsta);
     }
