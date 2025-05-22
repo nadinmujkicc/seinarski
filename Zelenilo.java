@@ -8,9 +8,23 @@ public class Zelenilo extends Proizvod {
         this.tipListova = tipListova;
     }
 
+    public static Zelenilo unesi() {
+        String ime = UnosHelper.unesiTekst("Unesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        LocalDate datum = LocalDate.now();
+        String tip = UnosHelper.unesiTekst("Tip listova: ");
+        return new Zelenilo(ime, cijena, kolicina, datum, tip);
+    }
+
+    // @Override
+    // public String toString() {
+    // return ToStringHelper.zaZelenilo(this);
+    // }
     @Override
     public String toString() {
-        return ToStringHelper.zaZelenilo(this);
+        return "ime=" + ime + ", cijena=" + cijena + ", kolicina=" + kolicina + ", datum=" + datum +
+                ", tipListova=" + tipListova;
     }
 
     public String getTipListova() {

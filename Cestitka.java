@@ -8,9 +8,24 @@ public class Cestitka extends Proizvod {
         this.poruka = poruka;
     }
 
+    public static Cestitka unesi() {
+        String ime = UnosHelper.unesiTekst("Unesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        LocalDate datum = LocalDate.now();
+        String poruka = UnosHelper.unesiTekst("Poruka: ");
+        return new Cestitka(ime, cijena, kolicina, datum, poruka);
+    }
+
+    // @Override
+    // public String toString() {
+    // return ToStringHelper.zaCestitku(this);
+    // }
+
     @Override
     public String toString() {
-        return ToStringHelper.zaCestitku(this);
+        return "ime=" + ime + ", cijena=" + cijena + ", kolicina=" + kolicina + ", datum=" + datum +
+                ", poruka=" + poruka;
     }
 
     public String getPoruka() {

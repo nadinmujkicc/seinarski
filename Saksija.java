@@ -10,10 +10,26 @@ public class Saksija extends Proizvod {
         this.volumenLitara = volumen;
     }
 
+    public static Saksija unesi() {
+        String ime = UnosHelper.unesiTekst("Unesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        LocalDate datum = LocalDate.now();
+        String materijal = UnosHelper.unesiTekst("Materijal: ");
+        double volumen = UnosHelper.unesiDouble("Volumen u litrima: ");
+        return new Saksija(ime, cijena, kolicina, datum, materijal, volumen);
+    }
+
+    // @Override
+    // public String toString() {
+    // return ToStringHelper.zaSaksiju(this);
+
+    // }
+
     @Override
     public String toString() {
-        return ToStringHelper.zaSaksiju(this);
-
+        return "ime=" + ime + ", cijena=" + cijena + ", kolicina=" + kolicina + ", datum=" + datum +
+                ", materijal=" + materijal + ", volumen=" + volumenLitara;
     }
 
     public String getMaterijal() {

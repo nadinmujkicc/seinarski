@@ -10,8 +10,23 @@ public class Gnjojivo extends Proizvod {
         this.tipGnojiva = vrsta;
     }
 
+    public static Gnjojivo unesi() {
+        String ime = UnosHelper.unesiTekst("Unesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        LocalDate datum = LocalDate.now();
+        double tezina = UnosHelper.unesiDouble("Težina u kg: ");
+        String vrsta = UnosHelper.unesiTekst("Vrsta gnojiva: ");
+        return new Gnjojivo(ime, cijena, kolicina, datum, tezina, vrsta);
+    }
+
+    // public String toString() {
+    // return ToStringHelper.zaGnojivo(this);
+    // }
+    @Override
     public String toString() {
-        return ToStringHelper.zaGnojivo(this);
+        return "ime=" + ime + ", cijena=" + cijena + ", kolicina=" + kolicina + ", datum=" + datum +
+                ", tezina=" + tezina + ", vrsta=" + tipGnojiva;
     }
 
     public double getTezina() {

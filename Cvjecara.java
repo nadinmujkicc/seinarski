@@ -39,55 +39,20 @@ public class Cvjecara {
     }
 
     private static void dodajProizvod() {
-        String ime = UnosHelper.unesiTekst("Vnesi ime: ");
-        double cijena = UnosHelper.unesiDouble("Vnesi cenu: ");
-        int kolicina = UnosHelper.unesiInt("Vnesi kolicinu: ");
-        LocalDate datum = LocalDate.now();
-
         System.out.println("Odaberi tip proizvoda:");
         System.out.println(
-                "1. Rezani cvet\n2. Saksijski cvet\n3. Zelenilo\n4. Gnojivo\n5. Svijeca\n6. Cestitka\n7. Posuda");
+                "1. Rezani cvijet\n2. Saksijski cvijet\n3. Zelenilo\n4. Gnojivo\n5. Svijeca\n6. Čestitka\n7. Posuda");
+
         int tip = UnosHelper.unesiInt("Izbor: ");
 
         switch (tip) {
-            case 1 -> {
-                String boja = UnosHelper.unesiTekst("Boja: ");
-                double visina = UnosHelper.unesiDouble("Visina u cm: ");
-                int duzina = UnosHelper.unesiInt("Dolzina stabla: ");
-                VrstaCveca vrsta = VrstaCveca
-                        .valueOf(UnosHelper.unesiTekst("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ").toUpperCase());
-                inventar.dodajProizvod(new RezaniCvet(ime, cijena, kolicina, datum, boja, visina, vrsta, duzina));
-            }
-            case 2 -> {
-                String boja = UnosHelper.unesiTekst("Boja: ");
-                double visina = UnosHelper.unesiDouble("Visina u cm: ");
-                double precnik = UnosHelper.unesiDouble("Precnik saksije: ");
-                VrstaCveca vrsta = VrstaCveca
-                        .valueOf(UnosHelper.unesiTekst("Vrsta (RUZA, TULIPAN, ORHIDEJA...): ").toUpperCase());
-                inventar.dodajProizvod(new SaksijskiCvet(ime, cijena, kolicina, datum, boja, visina, vrsta, precnik));
-            }
-            case 3 -> {
-                String tipListova = UnosHelper.unesiTekst("Tip listova: ");
-                inventar.dodajProizvod(new Zelenilo(ime, cijena, kolicina, datum, tipListova));
-            }
-            case 4 -> {
-                double tezina = UnosHelper.unesiDouble("Tezina v kg: ");
-                String vrsta = UnosHelper.unesiTekst("Vrsta gnojiva: ");
-                inventar.dodajProizvod(new Gnjojivo(ime, cijena, kolicina, datum, tezina, vrsta));
-            }
-            case 5 -> {
-                int trajanje = UnosHelper.unesiInt("Trajanje v satima: ");
-                inventar.dodajProizvod(new Svijeca(ime, cijena, kolicina, datum, trajanje));
-            }
-            case 6 -> {
-                String poruka = UnosHelper.unesiTekst("Poruka: ");
-                inventar.dodajProizvod(new Cestitka(ime, cijena, kolicina, datum, poruka));
-            }
-            case 7 -> {
-                String materijal = UnosHelper.unesiTekst("Materijal: ");
-                double volumen = UnosHelper.unesiDouble("Volumen v litrima: ");
-                inventar.dodajProizvod(new Saksija(ime, cijena, kolicina, datum, materijal, volumen));
-            }
+            case 1 -> inventar.dodajProizvod(RezaniCvet.unesi());
+            case 2 -> inventar.dodajProizvod(SaksijskiCvet.unesi());
+            case 3 -> inventar.dodajProizvod(Zelenilo.unesi());
+            case 4 -> inventar.dodajProizvod(Gnjojivo.unesi());
+            case 5 -> inventar.dodajProizvod(Svijeca.unesi());
+            case 6 -> inventar.dodajProizvod(Cestitka.unesi());
+            case 7 -> inventar.dodajProizvod(Saksija.unesi());
             default -> System.out.println("Nepoznat tip.");
         }
     }
@@ -95,16 +60,13 @@ public class Cvjecara {
     private static void prodajProizvod() {
         String ime = UnosHelper.unesiTekst("Vnesi ime proizvoda: ");
         int kolicina = UnosHelper.unesiInt("Kolicina za prodaju: ");
+
         boolean uspjeh = inventar.prodajProizvod(ime, kolicina);
         if (uspjeh) {
-
             System.out.println("Prodaja uspjesna.");
-
         } else {
-            System.out.println("Nema dovoljno zaliha ili proizvod ne postoji.");
-
+            System.out.println("Neuspjesna prodaja: nema dovoljno zaliha ili proizvod ne postoji.");
         }
-
     }
 
     private static void pretrazi() {

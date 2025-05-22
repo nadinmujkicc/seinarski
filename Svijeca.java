@@ -8,9 +8,23 @@ public class Svijeca extends Proizvod {
         this.trajanjeUSatima = trajanje;
     }
 
+    public static Svijeca unesi() {
+        String ime = UnosHelper.unesiTekst("Unesi ime: ");
+        double cijena = UnosHelper.unesiDouble("Unesi cijenu: ");
+        int kolicina = UnosHelper.unesiInt("Unesi količinu: ");
+        LocalDate datum = LocalDate.now();
+        int trajanje = UnosHelper.unesiInt("Trajanje u satima: ");
+        return new Svijeca(ime, cijena, kolicina, datum, trajanje);
+    }
+
+    // @Override
+    // public String toString() {
+    // return ToStringHelper.zaSvijecu(this);
+    // }
     @Override
     public String toString() {
-        return ToStringHelper.zaSvijecu(this);
+        return "ime=" + ime + ", cijena=" + cijena + ", kolicina=" + kolicina + ", datum=" + datum +
+                ", trajanje=" + trajanjeUSatima;
     }
 
     public int getTrajanjeUSatima() {

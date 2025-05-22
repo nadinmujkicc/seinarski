@@ -17,6 +17,10 @@ public abstract class Proizvod {
         return ime;
     }
 
+    public void prikazi() {
+        System.out.println(this.toString());
+    }
+
     public void prodaj(int kolicina) {
         if (this.kolicina >= kolicina) {
             this.kolicina -= kolicina;
@@ -52,4 +56,6 @@ public abstract class Proizvod {
     public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
+
+    public abstract String toString();
 }

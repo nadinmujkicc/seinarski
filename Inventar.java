@@ -39,8 +39,8 @@ public class Inventar {
     }
 
     public void ispisiSve() {
-        for (Proizvod p : proizvodi) {
-            System.out.println(p);
+        for (Proizvod p : getProizvodi()) {
+            p.prikazi();
 
         }
     }
